@@ -1,0 +1,150 @@
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.user-photo {
+  flex: 0 0 80px;
+  margin-top: 25px;
+  margin-left: 7px;
+  height: 240px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.user-details {
+  flex: 1;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-details h2 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.user-details .contact-info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 10px 0;
+  font-size: 1em;
+}
+
+.user-details p {
+  margin: 4px 0;
+}
+
+/* ------------------------------- */
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+:root {
+  --card-height: 40vh;
+  --card-width: calc(var(--card-height) / 0.5);
+}
+
+body {
+  min-height: 100vh;
+  background: #212534;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+/* User Card styling */
+.user-card {
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  align-items: center;
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  font-size: 1.1rem;
+  color: rgb(33, 180, 248);
+  cursor: pointer;
+  font-family: cursive;
+}
+/* Hover effect */
+.user-card:hover {
+  color: rgb(88, 199, 250, 100%);
+  transition: color 1s ease;
+  transform: scale(1.05);
+}
+
+.user-card::before {
+  content: "";
+  width: 104%;
+  height: 104%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate),
+    #5ddcff,
+    #3c67e3 43%,
+    #4e00c2
+  );
+  position: absolute;
+  z-index: -1;
+  top: -2%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
+}
+
+/* Keyframes for animation */
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+/* BREAKPOINTS */
+@media (max-width: 968px) {
+  .user-card {
+    flex-direction: row;
+    max-width: 600px;
+    font-size: 80%;
+  }
+
+  .user-photo {
+    align-self: flex-start;
+    height: 200px;
+  }
+
+  .user-details {
+    text-align: left;
+  }
+}
+
+@media (max-width: 368px) {
+  .user-card {
+    flex-direction: row;
+    max-width: 250px;
+    max-height: 200px;
+    font-size: 50%;
+  }
+
+  .user-photo {
+    align-self: flex-start;
+    height: 100px;
+  }
+
+  .user-details {
+    text-align: left;
+    line-height: 10px;
+  }
+}
